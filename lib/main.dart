@@ -81,12 +81,6 @@ class TimerButtonState extends State<TimerButton> {
   Widget build(BuildContext context) {
     // int noOfPics = 0;
     // var rng = Random();
-    dynamic listImagesnotFound = [
-      "assets/images/0.png",
-      "assets/images/1.png",
-      "assets/images/2.png",
-      "assets/images/3.png"
-    ];
     // bool timing = true;
     String imageName = listImagesnotFound[noOfPics].toString();
     return Scaffold(
