@@ -22,17 +22,17 @@ class TimerButton extends StatefulWidget {
 class TimerButtonState extends State<TimerButton> {
   int noOfPics = 0;
   var rng = Random();
-  dynamic listImagesnotFound = [
-    "assets/images/0.png",
-    "assets/images/1.png",
-    "assets/images/2.png",
-    "assets/images/3.png"
-  ];
+  String codeqr ="";
+    var _chars = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
+    Random _rnd = Random();
+    String getRandomString(int length) => String.fromCharCodes(Iterable.generate(
+        length, (_) => _chars.codeUnitAt(_rnd.nextInt(_chars.length))));
+
   // bool timing = true;
   // String imageName = listImagesnotFound[noOfPics].toString();
 
   void randomizer() {
-    noOfPics = rng.nextInt(3);
+    // noOfPics = rng.nextInt(3);
     // ignore: avoid_print
 
     // print(rng.toString());
@@ -60,12 +60,13 @@ class TimerButtonState extends State<TimerButton> {
     // timerchange();
     // timers();
     final periodicTimer = Timer.periodic(
-      const Duration(seconds: 30),
+      const Duration(seconds: 60),
       (timer) {
         setState(() {
-          noOfPics = rng.nextInt(100000) + 8000;
-          // imageName = listImagesnotFound[noOfPics].toString();
-          print(noOfPics.toInt());
+          codeqr = getRandomString(32);
+          var qr_change = getRandomString(32);
+       getRandomString(32);
+       print(_rnd.toString());
         });
         // disImg();
         randomizer();
@@ -82,7 +83,6 @@ class TimerButtonState extends State<TimerButton> {
     // int noOfPics = 0;
     // var rng = Random();
     // bool timing = true;
-    String imageName = listImagesnotFound[noOfPics].toString();
     return Scaffold(
       appBar: AppBar(
         title: const Text("HIIIHIHIHIH"),
@@ -96,7 +96,7 @@ class TimerButtonState extends State<TimerButton> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   QrImageView(
-                    data: '$noOfPics',
+                    data: "${codeqr}",
                     version: QrVersions.auto,
                     size: 200.0,
                   ),
@@ -106,7 +106,9 @@ class TimerButtonState extends State<TimerButton> {
                   InkWell(
                     onTap: () {
                       print("lolol");
-                      randomizer();
+                      setState(() {
+                        codeqr = getRandomString(32);
+                      });
                       // disImg();
                     },
                     child: Container(
